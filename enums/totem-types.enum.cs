@@ -1,0 +1,4 @@
+enum TotemType {
+    Avatar,
+    Item
+}
