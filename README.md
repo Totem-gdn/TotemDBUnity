@@ -9,7 +9,7 @@ With our git link: https://github.com/Totem-gdn/TotemDBUnity.git
 
 ## Example
 
-```unity
+```csharp
 using System;
 using TotemDB;
 using UnityEngine;
