@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using System.IO;
+using System.Threading.Tasks;
 using Codice.CM.WorkspaceServer.Lock;
 
 
 namespace TotemDB {
     public class TotemDBWrapper: MonoBehaviour {
         #region common
-        public Coroutine coroutine { get; private set; }
         public string items;
         public string avatars;
         public static System.Version Version
@@ -22,20 +22,20 @@ namespace TotemDB {
             }
         }
 
-        public void GetDB()
+        public void GetDB(Action<string> itemsCallback, Action<string> avatarsCallback)
         {
-            // StartCoroutine(GetAllAvatars());
-            StartCoroutine(GetAllItems());
+            StartCoroutine(GetAllItems(itemsCallback));
+            StartCoroutine(GetAllAvatars(avatarsCallback));
         }
 
         #endregion
         
-        private IEnumerator GetAllAvatars() {
+        private IEnumerator GetAllAvatars(Action<string> callback) {
             const string URL = "https://x8ki-letl-twmt.n7.xano.io/api:y8B1f40J/avatars";
             using (UnityWebRequest webRequest = UnityWebRequest.Get(URL))
             {
                 // Request and wait for the desired page.
-                webRequest.SendWebRequest();
+                yield return webRequest.SendWebRequest();
 
                 if (webRequest.result == UnityWebRequest.Result.ConnectionError)
                 {
@@ -43,19 +43,18 @@ namespace TotemDB {
                 }
                 else
                 {
-                    Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
-                    avatars = webRequest.downloadHandler.text;
-                    yield return webRequest.downloadHandler.text;
+                    // Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
+                    callback(webRequest.downloadHandler.text);
                 }
             }
         }
 
-        private IEnumerator GetAllItems() {
+        private IEnumerator GetAllItems(Action<string> callback) {
             const string URL = "https://x8ki-letl-twmt.n7.xano.io/api:y8B1f40J/items";
             using (UnityWebRequest webRequest = UnityWebRequest.Get(URL))
             {
                 // Request and wait for the desired page.
-                webRequest.SendWebRequest();
+                yield return webRequest.SendWebRequest();
             
                 if (webRequest.result == UnityWebRequest.Result.ConnectionError)
                 {
@@ -63,9 +62,8 @@ namespace TotemDB {
                 }
                 else
                 {
-                    Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
-                    items = webRequest.downloadHandler.text;
-                    yield return items;
+                    // Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
+                    callback(webRequest.downloadHandler.text);
                 }
             }
         }

@@ -1,6 +1,6 @@
 {
   "name": "com.totem.totemdb",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "displayName": "TotemDB Wrapper for Unity",
   "description": "A simple TotemDB Wrapper for Unity!",
   "unity": "2017.1",
