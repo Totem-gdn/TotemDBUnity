@@ -12,7 +12,8 @@ namespace TotemDB {
     public class TotemDBWrapper: MonoBehaviour {
         #region common
         public Coroutine coroutine { get; private set; }
-        public ItemTotem[] items;
+        public string items;
+        public string avatars;
         public static System.Version Version
         {
             get
@@ -43,7 +44,8 @@ namespace TotemDB {
                 else
                 {
                     Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
-                    yield return JsonUtility.FromJson<AvatarTotem[]>(webRequest.downloadHandler.text);
+                    avatars = webRequest.downloadHandler.text;
+                    yield return webRequest.downloadHandler.text;
                 }
             }
         }
@@ -62,14 +64,7 @@ namespace TotemDB {
                 else
                 {
                     Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
-                    items = JsonHelper.FromJson<ItemTotem>(webRequest.downloadHandler.text);
-                    if (items == null)
-                    {
-                        string path = Application.dataPath + "./Packages/TotemDBUnity/mock/items.json";
-                        StreamReader sr = new StreamReader(path);
-                        items = JsonUtility.FromJson<ItemTotem[]>(sr.ReadLine());
-                        sr.Close();
-                    }
+                    items = webRequest.downloadHandler.text;
                     yield return items;
                 }
             }
