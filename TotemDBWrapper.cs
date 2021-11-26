@@ -21,16 +21,9 @@ namespace TotemDB {
                 return typeof(TotemDBWrapper).Assembly.GetName().Version;
             }
         }
-
-        public void GetDB(Action<string> itemsCallback, Action<string> avatarsCallback)
-        {
-            StartCoroutine(GetAllItems(itemsCallback));
-            StartCoroutine(GetAllAvatars(avatarsCallback));
-        }
-
         #endregion
         
-        private IEnumerator GetAllAvatars(Action<string> callback) {
+        public IEnumerator GetAllAvatars(Action<string> callback) {
             const string URL = "https://x8ki-letl-twmt.n7.xano.io/api:y8B1f40J/avatars";
             using (UnityWebRequest webRequest = UnityWebRequest.Get(URL))
             {
@@ -49,7 +42,7 @@ namespace TotemDB {
             }
         }
 
-        private IEnumerator GetAllItems(Action<string> callback) {
+        public IEnumerator GetAllItems(Action<string> callback) {
             const string URL = "https://x8ki-letl-twmt.n7.xano.io/api:y8B1f40J/items";
             using (UnityWebRequest webRequest = UnityWebRequest.Get(URL))
             {
