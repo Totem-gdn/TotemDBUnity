@@ -1,16 +1,24 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class AvatarTotem {
-    public int id { get; set; }
-    public string seed { get; set; }
-    public string name { get; set; }
-    public string skinColor { get; set; }
-    public string hairType { get; set; }
-    public string hairColor { get; set; }
-    public int owner { get; set; }
-    public string icon { get; set; }
-    public static AvatarTotem CreateFromJSON(string jsonString)
+namespace entities
+{
+    [Serializable]
+    public class TotemAvatar {
+        public int id;
+        public string seed;
+        public string name;
+        public string skinColor;
+        public string hairType;
+        public string hairColor;
+        public OwnerEntity owner;
+        public IconEntity icon;
+    }
+
+    [Serializable]
+    public class TotemAvatarsResponseDto
     {
-        return JsonUtility.FromJson<AvatarTotem>(jsonString);
+        public List<TotemAvatar> avatars;
     }
 }

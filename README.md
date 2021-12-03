@@ -19,10 +19,55 @@ public class TotemTest : MonoBehaviour
     void Start()
     {
         var totemdb = gameObject.AddComponent<TotemDBWrapper>();
-        Action<string> itemCallback = items => Debug.Log(items);
-        Action<string> avatarCallback = items => Debug.Log(items);
-        StartCoroutine(totemdb.GetAllItems(itemCallback));
-        StartCoroutine(totemdb.GetAllAvatars(avatarCallback));
+        List<TotemItem> items = wrapper.GetAllItems();
+        List<TotemAvatar> avatars = wrapper.GetAllAvatars();
     }
+}
+```
+## Items and Avatars objects
+
+### TotemItem:
+```csharp
+public class TotemItem {
+    public int id;
+    public int created_at;
+    public string name;
+    public string seed;
+    public string type;
+    public string attrs;
+    public OwnerEntity owner;
+    public IconEntity icon;
+}
+```
+###TotemAvatar
+```csharp
+public class TotemAvatar {
+    public int id;
+    public string seed;
+    public string name;
+    public string skinColor;
+    public string hairType;
+    public string hairColor;
+    public OwnerEntity owner;
+    public IconEntity icon;
+}
+```
+
+###Owner
+```csharp
+public class OwnerEntity {
+    public int id;
+    public string name;
+}
+```
+###Icon
+```csharp
+public class IconEntity {
+    public string path;
+    public string name;
+    public string type;
+    public int size;
+    public string mime;
+    public string url;
 }
 ```

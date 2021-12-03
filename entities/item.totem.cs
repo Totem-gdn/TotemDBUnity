@@ -2,13 +2,24 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class ItemTotem {
-    public int id { get; set; }
-    public string name { get; set; }
-    public string seed { get; set; }
-    public string type { get; set; }
-    public OwnerEntity owner { get; set; }
-    //public string icon { get; set; }
-    public ItemAttributes attrs { get; set; }
+namespace entities
+{
+    [Serializable]
+    public class TotemItem
+    {
+        public int id;
+        public int created_at;
+        public string name;
+        public string seed;
+        public string type;
+        public string attrs;
+        public OwnerEntity owner;
+        public IconEntity icon;
+    }
+
+    [Serializable]
+    public class TotemItemsResponseDto
+    {
+        public List<TotemItem> items;
+    }
 }

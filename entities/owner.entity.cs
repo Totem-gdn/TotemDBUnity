@@ -1,6 +1,11 @@
-[System.Serializable]
-public class OwnerEntity
+using System;
+
+namespace entities
 {
-    public int id { get; set; }
-    public string name { get; set; }
+    [Serializable]
+    public class OwnerEntity
+    {
+        public int id;
+        public string name;
+    }
 }

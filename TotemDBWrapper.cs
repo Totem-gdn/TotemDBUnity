@@ -1,64 +1,35 @@
-using System;
-using System.Collections;
-using UnityEngine.Networking;
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using UnityEngine;
 using System.IO;
-using System.Threading.Tasks;
-using Codice.CM.WorkspaceServer.Lock;
+using System.Net;
+using entities;
+using UnityEngine;
+using UnityEngine.Serialization;
 
+public class TotemDBWrapper: MonoBehaviour
+{
+    [FormerlySerializedAs("_itemsUrl")] [SerializeField]
+    private string itemsUrl = "https://x8ki-letl-twmt.n7.xano.io/api:y8B1f40J/items";
+    [FormerlySerializedAs("_avatarsUrl")] [SerializeField]
+    private string avatarsUrl  = "https://x8ki-letl-twmt.n7.xano.io/api:y8B1f40J/avatars";
+    public List<TotemAvatar> GetAllAvatars()
+    {
+        var avatarsResponseDto = GenericApiGet<TotemAvatarsResponseDto>(this.avatarsUrl);
+        return avatarsResponseDto.avatars;
+    }
 
-namespace TotemDB {
-    public class TotemDBWrapper: MonoBehaviour {
-        #region common
-        public string items;
-        public string avatars;
-        public static System.Version Version
-        {
-            get
-            {
-                return typeof(TotemDBWrapper).Assembly.GetName().Version;
-            }
-        }
-        #endregion
-        
-        public IEnumerator GetAllAvatars(Action<string> callback) {
-            const string URL = "https://x8ki-letl-twmt.n7.xano.io/api:y8B1f40J/avatars";
-            using (UnityWebRequest webRequest = UnityWebRequest.Get(URL))
-            {
-                // Request and wait for the desired page.
-                yield return webRequest.SendWebRequest();
+    public List<TotemItem> GetAllItems()
+    {
+        var itemsResponseDto = GenericApiGet<TotemItemsResponseDto>(this.itemsUrl);
+        return itemsResponseDto.items;
+    }
 
-                if (webRequest.result == UnityWebRequest.Result.ConnectionError)
-                {
-                    Debug.Log(webRequest.error);
-                }
-                else
-                {
-                    // Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
-                    callback(webRequest.downloadHandler.text);
-                }
-            }
-        }
-
-        public IEnumerator GetAllItems(Action<string> callback) {
-            const string URL = "https://x8ki-letl-twmt.n7.xano.io/api:y8B1f40J/items";
-            using (UnityWebRequest webRequest = UnityWebRequest.Get(URL))
-            {
-                // Request and wait for the desired page.
-                yield return webRequest.SendWebRequest();
-            
-                if (webRequest.result == UnityWebRequest.Result.ConnectionError)
-                {
-                    Debug.Log(webRequest.error);
-                }
-                else
-                {
-                    // Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
-                    callback(webRequest.downloadHandler.text);
-                }
-            }
-        }
+    private static T GenericApiGet<T>(string url)
+    {
+        var request = (HttpWebRequest)WebRequest.Create(url);
+        var response = (HttpWebResponse) request.GetResponse();
+        var reader = new StreamReader(response.GetResponseStream()!);
+        var jsonResponse = reader.ReadToEnd();
+        var objects = JsonUtility.FromJson<T>(jsonResponse);
+        return objects;
     }
 }
