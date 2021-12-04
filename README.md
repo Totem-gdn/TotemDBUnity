@@ -18,7 +18,7 @@ public class TotemTest : MonoBehaviour
 {
     void Start()
     {
-        var totemdb = gameObject.AddComponent<TotemDBWrapper>();
+        var wrapper = gameObject.AddComponent<TotemDBWrapper>();
         List<TotemItem> items = wrapper.GetAllItems();
         List<TotemAvatar> avatars = wrapper.GetAllAvatars();
     }
