@@ -1,11 +1,9 @@
 using System;
 
-namespace entities
+[Serializable]
+public class OwnerEntity
 {
-    [Serializable]
-    public class OwnerEntity
-    {
-        public int id;
-        public string name;
-    }
+    public int id;
+    public string name;
 }
+
