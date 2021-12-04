@@ -42,7 +42,7 @@ public class TotemItem {
 }
 ```
 
-###TotemAvatar:
+### TotemAvatar:
 ```csharp
 public class TotemAvatar {
     public int id;
@@ -56,7 +56,7 @@ public class TotemAvatar {
 }
 ```
 
-###Owner:
+### Owner:
 ```csharp
 public class OwnerEntity {
     public int id;
@@ -64,7 +64,7 @@ public class OwnerEntity {
 }
 ```
 
-###Icon:
+### Icon:
 ```csharp
 public class IconEntity {
     public string path;
@@ -76,7 +76,7 @@ public class IconEntity {
 }
 ```
 
-###Color:
+### Color:
 ```csharp
 public class ColorEntity {
     public float red;
