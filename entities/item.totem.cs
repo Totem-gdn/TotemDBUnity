@@ -13,8 +13,8 @@ public class TotemItem
     public float speed;
     public int damage;
     public string element;
+    public ColorEntity color;
     public OwnerEntity owner;
-    public IconEntity icon;
 }
 
 [Serializable]
