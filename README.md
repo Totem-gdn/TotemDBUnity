@@ -18,28 +18,31 @@ public class TotemTest : MonoBehaviour
 {
     void Start()
     {
-        var totemdb = gameObject.AddComponent<TotemDBWrapper>();
+        var wrapper = gameObject.AddComponent<TotemDBWrapper>();
         List<TotemItem> items = wrapper.GetAllItems();
         List<TotemAvatar> avatars = wrapper.GetAllAvatars();
     }
 }
 ```
-## Items and Avatars objects
+## Items and Avatars objects:
 
 ### TotemItem:
 ```csharp
 public class TotemItem {
     public int id;
-    public int created_at;
+    public string created_at;
     public string name;
     public string seed;
     public string type;
-    public string attrs;
+    public float speed;
+    public int damage;
+    public string element;
+    public ColorEntity color;
     public OwnerEntity owner;
-    public IconEntity icon;
 }
 ```
-###TotemAvatar
+
+### TotemAvatar:
 ```csharp
 public class TotemAvatar {
     public int id;
@@ -53,14 +56,15 @@ public class TotemAvatar {
 }
 ```
 
-###Owner
+### Owner:
 ```csharp
 public class OwnerEntity {
     public int id;
     public string name;
 }
 ```
-###Icon
+
+### Icon:
 ```csharp
 public class IconEntity {
     public string path;
@@ -69,5 +73,15 @@ public class IconEntity {
     public int size;
     public string mime;
     public string url;
+}
+```
+
+### Color:
+```csharp
+public class ColorEntity {
+    public float red;
+    public float green;
+    public float blue;
+    public float alpha;
 }
 ```
