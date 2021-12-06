@@ -1,10 +1,34 @@
-# TotemDB Wrapper for Unity!
+# TotemDB Wrapper for Unity! 
 Totem DB wrapper for unity
 
-## Installation
+## Instructions
+You can install this package in three ways!
+### A) Package Manager (GIT Url)
+
+The suggested way to install this package is through the "Unity's Package Manager", with our GIT url. 
+This way, you will be notified once new versions get released, and you will be able to download them directly from the Unity Editor.
+
+1/ **The GIT url you need to add to the Package manager is the following** (copy and paste it): **https://github.com/Totem-gdn/TotemDBUnity.git**
+
+2/ In the Unity editor, open **Window -> Package Manager** to open the Package Manager, then click **+ -> Add package from git URL... -> paste the link above**.
+
+**Still having trouble this way?**
+<br>
+You can always check Unity's docs for how to install from git: https://docs.unity3d.com/Manual/upm-ui-giturl.html
+
+### B) Manual Install
+You can also install this package manually, by copying the source files directly into your project's assets folder. (You'd have to do this every time there is a new update.)
+
+### C) Using .unitypackage from our "Release" tab
+1/ Head over to our releases tab: https://github.com/Totem-gdn/TotemDBUnity/releases.
+Download the requested version .unitypackage.
+<br>
+2/ In the Unity editor, open **Assets -> Import Package -> Custom Package... -> navigate and select downloaded package** and Voilà!
+
+---
+
 
 You can check the manual: https://docs.unity3d.com/Manual/upm-ui-giturl.html <br>
-With our git link: https://github.com/Totem-gdn/TotemDBUnity.git
 
 
 ## Example
