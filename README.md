@@ -25,11 +25,10 @@ Download the requested version .unitypackage.
 <br>
 2/ In the Unity editor, open **Assets -> Import Package -> Custom Package... -> navigate and select downloaded package** and Voilà!
 
+
+**You can check the manual: https://docs.unity3d.com/Manual/upm-ui-giturl.html**
+<br>
 ---
-
-
-You can check the manual: https://docs.unity3d.com/Manual/upm-ui-giturl.html <br>
-
 
 ## Example
 
@@ -48,6 +47,7 @@ public class TotemTest : MonoBehaviour
     }
 }
 ```
+---
 ## Items and Avatars objects:
 
 ### TotemItem:
