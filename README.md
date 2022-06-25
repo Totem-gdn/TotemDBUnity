@@ -1,3 +1,5 @@
+# This Repo is DEPRECATRED and will be removed soon!
+
 # TotemDB Wrapper for Unity! 
 Totem DB wrapper for unity
 
